@@ -118,6 +118,93 @@ body {
 }
 
 /* ============================================
+   SOUND TOGGLE BUTTON - Global sound control
+   ============================================ */
+
+.sound-toggle {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+.sound-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.95));
+}
+
+.sound-toggle:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.sound-toggle .sound-icon {
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.sound-toggle.muted {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.95), rgba(220, 38, 38, 0.9));
+    border-color: rgba(220, 38, 38, 0.4);
+}
+
+.sound-toggle.muted:hover {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 1), rgba(220, 38, 38, 0.95));
+    box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.sound-toggle.muted .sound-icon {
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
+}
+
+/* Responsive adjustments for sound toggle */
+@media (max-width: 768px) {
+    .sound-toggle {
+        width: 45px;
+        height: 45px;
+        top: 15px;
+        right: 15px;
+    }
+    
+    .sound-toggle .sound-icon {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sound-toggle {
+        width: 42px;
+        height: 42px;
+        top: 12px;
+        right: 12px;
+    }
+    
+    .sound-toggle .sound-icon {
+        font-size: 1.1rem;
+    }
+}
+
+/* ============================================
    MAIN PAGE SPECIFIC STYLES
    ============================================ */
 

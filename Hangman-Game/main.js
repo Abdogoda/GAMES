@@ -38,7 +38,15 @@ let guessSpanes = document.querySelectorAll(".letters-guess span");
 let wrontAttempts = 0;
 let theDraw = document.querySelector(".hangman-draw");
 
-
+// Play sound helper
+function playSoundEffect(sound) {
+    if (window.playGameSound) {
+        window.playGameSound(sound);
+    } else if (window.isSoundEnabled && window.isSoundEnabled() && sound) {
+        sound.currentTime = 0;
+        sound.play().catch(e => console.log('Sound play failed:', e));
+    }
+}
 
 // 
 
@@ -70,7 +78,7 @@ document.addEventListener("click", (e) => {
             wrontAttempts++;
             theDraw.classList.add(`wrong-${wrontAttempts}`);
             if (wrontAttempts == 6){
-                document.getElementById("fail").play();
+                playSoundEffect(document.getElementById("fail"));
                 setTimeout(() => {
                     lettersCon.classList.add("finish");
                 failGame();
@@ -92,7 +100,7 @@ function failGame(){
 }
 
 function successGame(){
-    document.getElementById("success").play();
+    playSoundEffect(document.getElementById("success"));
     let div = document.createElement("div");
     let divText = document.createTextNode(`You Win`);
     div.appendChild(divText);

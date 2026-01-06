@@ -8,6 +8,37 @@
     }
 })();
 
+// Global Sound Control
+window.isSoundEnabled = function() {
+    const soundEnabled = localStorage.getItem('gameHubSound');
+    return soundEnabled === null || soundEnabled === 'true';
+};
+
+window.playGameSound = function(sound) {
+    if (window.isSoundEnabled() && sound) {
+        sound.currentTime = 0;
+        sound.play().catch(e => console.log('Sound play failed:', e));
+    }
+};
+
+// Sound Toggle for main page
+const soundToggle = document.getElementById('soundToggle');
+if (soundToggle) {
+    const updateSoundIcon = () => {
+        const enabled = window.isSoundEnabled();
+        soundToggle.querySelector('.sound-icon').textContent = enabled ? '🔊' : '🔇';
+        soundToggle.classList.toggle('muted', !enabled);
+    };
+    
+    updateSoundIcon();
+    
+    soundToggle.addEventListener('click', () => {
+        const newState = !window.isSoundEnabled();
+        localStorage.setItem('gameHubSound', newState);
+        updateSoundIcon();
+    });
+}
+
 // Theme Switcher for main page
 const themeButtons = document.querySelectorAll('.theme-btn');
 const body = document.body;

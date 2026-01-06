@@ -300,8 +300,12 @@ function animateScore(element) {
 
 // Play sound
 function playSound(sound) {
-    sound.currentTime = 0;
-    sound.play();
+    if (window.playGameSound) {
+        window.playGameSound(sound);
+    } else {
+        sound.currentTime = 0;
+        sound.play().catch(e => console.log('Sound play failed:', e));
+    }
 }
 
 // Disable choice buttons

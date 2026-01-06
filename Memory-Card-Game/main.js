@@ -220,7 +220,11 @@ function endGame() {
     
     // Play success sound
     successSound.currentTime = 0;
-    successSound.play();
+    if (window.playGameSound) {
+        window.playGameSound(successSound);
+    } else {
+        successSound.play();
+    }
     
     // Show win modal after a short delay
     setTimeout(() => {
