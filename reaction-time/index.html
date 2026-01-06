@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reaction Time Test</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <script src="../script.js"></script>
+    <a href="../index.html" class="back-to-menu">← Back to Menu</a>
+    
+    <div class="container">
+        <h1 class="game-title">Reaction Time Test</h1>
+        
+        <div class="game-stats">
+            <div class="stat-box">
+                <h3>Current</h3>
+                <div class="score-value" id="current">-</div>
+            </div>
+            <div class="stat-box">
+                <h3>Average</h3>
+                <div class="score-value" id="average">-</div>
+            </div>
+            <div class="stat-box">
+                <h3>Best Time</h3>
+                <div class="highscore-value" id="bestTime">-</div>
+            </div>
+            <div class="stat-box">
+                <h3>Attempts</h3>
+                <div class="attempts-value" id="attempts">0/5</div>
+            </div>
+        </div>
+
+        <div class="game-container" id="gameArea">
+            <div class="game-screen waiting" id="gameScreen">
+                <div class="instruction" id="instruction">
+                    <h2>⚡ Reaction Time Test ⚡</h2>
+                    <p>Click anywhere when the screen turns <span class="highlight">GREEN</span></p>
+                    <button id="startBtn" class="start-btn">Start Test</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="attempts-list">
+            <h2>📊 Your Attempts</h2>
+            <div id="attemptsList"></div>
+        </div>
+
+        <div class="leaderboard">
+            <h2>🏆 Best Times</h2>
+            <div id="leaderboardList"></div>
+        </div>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div id="gameOverModal" class="modal">
+        <div class="modal-content">
+            <h2>🎉 Test Complete! 🎉</h2>
+            <div class="results">
+                <div class="result-item">
+                    <span class="result-label">Average Time:</span>
+                    <span class="result-value" id="finalAverage">0ms</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Best Time:</span>
+                    <span class="result-value" id="finalBest">0ms</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Worst Time:</span>
+                    <span class="result-value" id="finalWorst">0ms</span>
+                </div>
+            </div>
+            <p id="recordMessage"></p>
+            <button id="playAgainBtn" class="modal-btn">Test Again</button>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="clickSound" src="../assets/audio/success.mp3"></audio>
+    <audio id="tooEarlySound" src="../assets/audio/fail.mp3"></audio>
+
+    <script src="game.js"></script>
+</body>
+</html>
