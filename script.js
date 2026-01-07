@@ -10,21 +10,17 @@
 
 // Global Sound State Synchronization - Initialize on all pages
 (function() {
-    // Wait for SoundManager to be available
     const initSoundState = function() {
         if (window.SoundManager) {
             const savedSound = localStorage.getItem('gameHubSound');
             const shouldEnable = savedSound === null || savedSound === 'true';
             window.SoundManager.toggle(shouldEnable);
-            console.log('🔊 Sound state initialized:', shouldEnable ? 'enabled' : 'muted');
         }
     };
     
-    // Try to initialize immediately
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initSoundState);
     } else {
-        // Run after a short delay to ensure SoundManager is loaded
         setTimeout(initSoundState, 100);
     }
 })();

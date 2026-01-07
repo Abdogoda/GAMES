@@ -56,7 +56,6 @@ function playSoundEffect(sound) {
         window.playGameSound(sound);
     } else if (window.isSoundEnabled && window.isSoundEnabled() && sound) {
         sound.currentTime = 0;
-        sound.play().catch(e => console.log('Sound play failed:', e));
     }
 }
 

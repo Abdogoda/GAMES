@@ -59,7 +59,6 @@ const SoundManager = (function() {
         }
         
         initialized = true;
-        console.log('🔊 Sound Manager initialized with', Object.keys(sounds).length, 'sounds', soundEnabled ? '(enabled)' : '(muted)');
     }
 
     // Play a sound by name

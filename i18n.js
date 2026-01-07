@@ -26,45 +26,31 @@ class I18n {
 
     async loadTranslations(lang) {
         try {
-            // Detect if we're in a game subdirectory by analyzing the path
             const path = window.location.pathname;
             const pathParts = path.split('/').filter(p => p && p !== 'index.html');
             
-            // Remove any .html files from the path to get just directories
             const directories = pathParts.filter(p => !p.endsWith('.html'));
-            
-            // Logic: 
-            // - 0 dirs: root (/) -> ./assets
-            // - 1 dir: could be /GAMES/ (root) or /tic-tac-toe/ (game folder)
-            //   Check if the directory name looks like a game (contains hyphen or known game name)
-            // - 2+ dirs: /GAMES/tic-tac-toe/ (game folder) -> ../assets
             
             let isInGameFolder = false;
             
             if (directories.length === 0) {
                 isInGameFolder = false; // Root directory
             } else if (directories.length === 1) {
-                // Single directory - check if it's a game folder or root folder
                 const dirName = directories[0].toLowerCase();
-                // Game folders typically have hyphens or are known game names
                 const isGameFolder = dirName.includes('-') || 
                     ['snake', 'hangman', 'memory', 'stealth', 'football', 'typing', 'reaction', 'platform', 'whack'].includes(dirName);
                 isInGameFolder = isGameFolder;
             } else {
-                // 2+ directories means we're definitely in a game subfolder
                 isInGameFolder = true;
             }
             
-            // Use relative path based on location
             const basePath = isInGameFolder ? '../assets/translations' : './assets/translations';
             const response = await fetch(`${basePath}/${lang}.json`);
             
             if (!response.ok) throw new Error(`Failed to load ${lang}.json`);
             this.translations = await response.json();
-            console.log(`Loaded ${lang} translations from ${basePath}/${lang}.json`);
         } catch (error) {
             console.error('Error loading translations:', error);
-            // Fallback to English if error occurs
             if (lang !== 'en') {
                 await this.loadTranslations('en');
             }
