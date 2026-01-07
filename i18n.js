@@ -26,23 +26,9 @@ class I18n {
 
     async loadTranslations(lang) {
         try {
-            const path = window.location.pathname;
-            const pathParts = path.split('/').filter(p => p && p !== 'index.html');
-            
-            const directories = pathParts.filter(p => !p.endsWith('.html'));
-            
-            let isInGameFolder = false;
-            
-            if (directories.length === 0) {
-                isInGameFolder = false; // Root directory
-            } else if (directories.length === 1) {
-                const dirName = directories[0].toLowerCase();
-                const isGameFolder = dirName.includes('-') || 
-                    ['snake', 'hangman', 'memory', 'stealth', 'football', 'typing', 'reaction', 'platform', 'whack'].includes(dirName);
-                isInGameFolder = isGameFolder;
-            } else {
-                isInGameFolder = true;
-            }
+            const pathname = window.location.pathname;
+            const gamefolders = ['football-guesser', 'hangman', 'memory-card', 'platform-jumper', 'reaction-time', 'snake', 'stealth-game', 'tic-tac-toe', 'typing-speed', 'whack-a-mole'];
+            const isInGameFolder = gamefolders.some(folder => pathname.includes('/' + folder + '/'));
             
             const basePath = isInGameFolder ? '../assets/translations' : './assets/translations';
             const response = await fetch(`${basePath}/${lang}.json`);

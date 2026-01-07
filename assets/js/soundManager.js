@@ -1,12 +1,12 @@
 const SoundManager = (function() {
     // Detect if we're on the global index.html or in a game subdirectory
-    // Check if pathname has subdirectories by counting path segments
+    // Check if the current page is in a game folder by looking for game folders in URL
     const pathname = window.location.pathname;
-    const pathSegments = pathname.split('/').filter(segment => segment && segment !== 'index.html');
-    const isInSubdirectory = pathSegments.length > 0;
+    const gamefolders = ['football-guesser', 'hangman', 'memory-card', 'platform-jumper', 'reaction-time', 'snake', 'stealth-game', 'tic-tac-toe', 'typing-speed', 'whack-a-mole'];
+    const isInGameFolder = gamefolders.some(folder => pathname.includes('/' + folder + '/'));
     
     // Set path prefix based on location
-    const pathPrefix = isInSubdirectory ? '../assets/audio/' : 'assets/audio/';
+    const pathPrefix = isInGameFolder ? '../assets/audio/' : './assets/audio/';
     
     // Sound library - maps sound names to their files and settings
     const soundLibrary = {
