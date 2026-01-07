@@ -65,6 +65,12 @@ const retryBtn = document.getElementById('retryBtn');
 const successSound = document.getElementById('successSound');
 const failSound = document.getElementById('failSound');
 
+// Play sound helper using SoundManager
+function playSound(soundName) {
+    if (window.SoundManager && window.isSoundEnabled && window.isSoundEnabled()) {
+        window.SoundManager.play(soundName);
+    }
+}
 
 // Load best level
 function loadBestLevel() {
