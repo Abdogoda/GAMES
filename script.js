@@ -68,11 +68,6 @@ if (soundToggle) {
             window.SoundManager.toggle(newState);
         }
         updateSoundIcon();
-        
-        // Play click sound as feedback
-        if (newState) {
-            window.playGameSound('click');
-        }
     });
 }
 

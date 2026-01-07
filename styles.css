@@ -224,8 +224,6 @@ body {
     .sound-toggle {
         width: 45px;
         height: 45px;
-        top: 15px;
-        right: 15px;
     }
     
     .sound-toggle .sound-icon {
@@ -235,8 +233,6 @@ body {
     .lang-toggle {
         width: 45px;
         height: 45px;
-        top: 15px;
-        right: 70px;
     }
 }
 
@@ -244,15 +240,15 @@ body {
     .sound-toggle {
         width: 42px;
         height: 42px;
-        top: 12px;
-        right: 12px;
+        top: 70px;
+        left: 10px;
     }
     
     .lang-toggle {
         width: 42px;
         height: 42px;
-        top: 12px;
-        right: 62px;
+        top: 70px;
+        left: 60px;
     }
     
     .lang-toggle .lang-text {
@@ -786,26 +782,26 @@ body.rtl {
 /* RTL Responsive adjustments */
 @media (max-width: 768px) {
     [dir="rtl"] .sound-toggle {
-        left: 15px;
-        right: auto;
+        left: auto;
+        right: 15px;
     }
     
     [dir="rtl"] .lang-toggle {
-        left: 70px;
-        right: auto;
+        left: auto;
+        right: 70px;
     }
 }
 
 @media (max-width: 480px) {
     [dir="rtl"] .sound-toggle {
-        left: 10px;
-        right: auto;
+        left: auto;
+        right: 10px;
         top: 70px;
     }
     
     [dir="rtl"] .lang-toggle {
-        left: 60px;
-        right: auto;
+        left: auto;
+        right: 60px;
         top: 70px;
     }
 
