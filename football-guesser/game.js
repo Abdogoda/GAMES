@@ -1,5 +1,5 @@
-// Use global API key from script.js
-const GROQ_API_KEY = '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';
+// API key will be loaded from external config or set by user
+const GROQ_API_KEY = window.GROQ_API_KEY || '';
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 let questionsLeft = 10;
