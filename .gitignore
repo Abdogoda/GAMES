@@ -3,9 +3,6 @@
 .env.local
 .env.production
 
-# API Keys and secrets
-config.json
-
 # Node modules
 node_modules/
 

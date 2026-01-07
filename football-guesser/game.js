@@ -1,5 +1,7 @@
 // API key will be loaded from external config or set by user
-const GROQ_API_KEY = window.GROQ_API_KEY || '';
+function getAPIKey() {
+    return window.GROQ_API_KEY || '';
+}
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 let questionsLeft = 10;
@@ -215,11 +217,16 @@ async function makeGuess() {
 }
 
 async function callGroqAPI(maxTokens = 10) {
+    const apiKey = getAPIKey();
+    if (!apiKey || apiKey === 'YOUR_GROQ_API_KEY_HERE') {
+        throw new Error('API key not configured. Please add your Groq API key to config.json');
+    }
+    
     const response = await fetch(GROQ_API_URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${GROQ_API_KEY}`
+            'Authorization': `Bearer ${apiKey}`
         },
         body: JSON.stringify({
             model: 'llama-3.3-70b-versatile',
